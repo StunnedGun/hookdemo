@@ -1,19 +1,20 @@
-import { useState, useEffect} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 export default function App() {
+  let [renders, setRenders] = useState(1);
+  const renderCount = useRef(1);
 
   useEffect(() => {
-    console.log("after render");
+    renderCount.current++;
   })
 
-  const [resourceType, setResourceType] = useState('posts');
+
   return (
     <div>
-      <button onClick={() => setResourceType('posts')}>Posts</button>
-      <button onClick={() => setResourceType('users')}>Users</button>
-      <button onClick={() => setResourceType('comments')}>Comments</button>
-      <h1>{resourceType}</h1>
+      <input onChange={(e) => { setRenders(renders+1); }}></input>
+
+      <h2>{renders}</h2>
     </div>
     
   );
